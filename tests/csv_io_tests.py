@@ -12,8 +12,9 @@ class CsvIOTests(unittest.TestCase):
 
     def test_dump_hockey(self):
         """
+            it should consume a list of tuples and then write it to a csv
         """
         leader_board = [("bobcats",3),("tomcats",2),("elephants",1)]
-        write_csv(leader_board,"test_output.csv")
+        write_csv(leader_board,"output/test_output.csv")
 if __name__ == "__main__":
     unittest.main()

@@ -12,6 +12,9 @@ SCORE_IDX = 1
 
 @dataclass
 class Game:
+    """
+        intermediary class for storing and determing outcomes of a game
+    """
     team_one: Tuple[str,int]
     team_two: Tuple[str,int]
 
@@ -19,6 +22,9 @@ class Game:
         return self.team_one[SCORE_IDX] == self.team_two[SCORE_IDX]
     
     def calc_points(self):
+        """
+            returns the largest score first then the smallest of the two items
+        """
         winner = max(self.team_one,self.team_two,key=lambda tup: tup[SCORE_IDX])
         loser = min(self.team_one,self.team_two,key=lambda tup: tup[SCORE_IDX])
             
