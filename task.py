@@ -1,7 +1,7 @@
 import argparse
 
-from src.ranking import Ranking
-
+from src.ranking import rank_teams
+from src.csv_io import read_csv, write_csv
 
 def entrypoint() -> None:
     """Main entry point for the hockey ranker CLI.
@@ -25,8 +25,16 @@ def entrypoint() -> None:
 
     # TODO: Add your code here
     # (you may modify the line below)
-    my_ranking = Ranking()
-
+    try:
+        csv_data = read_csv(input_file=input_file)
+        leader_board = rank_teams(csv_data)
+        write_csv(leader_board,output_file)
+    except FileNotFoundError as fe:
+        print(fe)
+        if fe.filename == input_file:
+            print(f"input file {input_file} not found")
+        else:
+            print(f"an error occured while writing to {output_file}")
 
 if __name__ == "__main__":
     entrypoint()

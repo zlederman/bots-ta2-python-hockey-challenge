@@ -25,4 +25,10 @@ class RankingTests(unittest.TestCase):
             ("Dragons 0","Bulls 3"),
             ("Sluggers 3","The Kraken 2")]
         team_leaderboard = rank_teams(csv_output)
-        
+        prev = team_leaderboard[0]
+        for i in range(1,len(team_leaderboard)):
+            next_ = team_leaderboard[i]
+            self.assertGreaterEqual(prev[1],next_[1])
+            if prev[1] == next_[1]:
+                self.assertLess(prev[0],next_[0])
+            prev= next_
